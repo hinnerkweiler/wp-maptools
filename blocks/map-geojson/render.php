@@ -21,14 +21,14 @@ $map_caption  = trim( wp_get_attachment_caption( $attachment_id ) );
 
 wp_enqueue_style(
 	'leaflet',
-	'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+	HWMAPTOOL_URL . 'assets/leaflet/leaflet.css',
 	[],
 	'1.9.4'
 );
 
 wp_enqueue_script(
 	'leaflet',
-	'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+	HWMAPTOOL_URL . 'assets/leaflet/leaflet.js',
 	[],
 	'1.9.4',
 	true
@@ -43,9 +43,9 @@ wp_add_inline_script(
 		if ( ! el ) return;
 		var map = L.map( el );
 
-		L.tileLayer("http://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_grau/default/WEBMERCATOR/{z}/{y}/{x}.png", {
+		L.tileLayer("https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_grau/default/WEBMERCATOR/{z}/{y}/{x}.png", {
 	maxZoom: 20,
-	attribution: "Map data: &copy; <a href=\"http://www.govdata.de/dl-de/by-2-0\">dl-de/by-2-0</a>"
+	attribution: "Map data: &copy; <a href=\"https://www.govdata.de/dl-de/by-2-0\">dl-de/by-2-0</a>"
 }).addTo( map );
 
 		
@@ -53,6 +53,16 @@ wp_add_inline_script(
 			"#e6194b","#3cb44b","#4363d8","#f58231","#911eb4",
 			"#42d4f4","#f032e6","#bfef45","#469990","#9a6324"
 		];
+
+		/* Escape a value for safe insertion into innerHTML. */
+		function escHtml( s ) {
+			return String( s )
+				.replace( /&/g, "&amp;" )
+				.replace( /</g, "&lt;" )
+				.replace( />/g, "&gt;" )
+				.replace( /"/g, "&quot;" )
+				.replace( /\'/g, "&#39;" );
+		}
 
 		/* Return the best human-readable label for a feature, or null if none. */
 		function featureLabel( feature ) {
@@ -76,16 +86,16 @@ wp_add_inline_script(
 
 			if ( isPoint ) {
 				var heading = p.label || p.name || p.title;
-				if ( heading ) rows.push( "<strong>" + heading + "</strong>" );
-				if ( p.timestamp ) rows.push( "<em>" + p.timestamp + "</em>" );
-				if ( p.description ) rows.push( p.description );
+				if ( heading ) rows.push( "<strong>" + escHtml( heading ) + "</strong>" );
+				if ( p.timestamp ) rows.push( "<em>" + escHtml( p.timestamp ) + "</em>" );
+				if ( p.description ) rows.push( escHtml( p.description ) );
 			} else {
 				var heading = p.name || p.title;
-				if ( heading ) rows.push( "<strong>" + heading + "</strong>" );
-				if ( p.description ) rows.push( p.description );
-				if ( p.start && p.finish ) rows.push( p.start + " &rarr; " + p.finish );
-				if ( p.navigation_warning ) rows.push( "<em>" + p.navigation_warning + "</em>" );
-				if ( p.route_type ) rows.push( "Type: " + p.route_type );
+				if ( heading ) rows.push( "<strong>" + escHtml( heading ) + "</strong>" );
+				if ( p.description ) rows.push( escHtml( p.description ) );
+				if ( p.start && p.finish ) rows.push( escHtml( p.start ) + " &rarr; " + escHtml( p.finish ) );
+				if ( p.navigation_warning ) rows.push( "<em>" + escHtml( p.navigation_warning ) + "</em>" );
+				if ( p.route_type ) rows.push( "Type: " + escHtml( p.route_type ) );
 			}
 
 			return rows.join( "<br>" );
@@ -155,7 +165,7 @@ wp_add_inline_script(
 								html += "<div style=\"display:flex;align-items:center;gap:8px;margin:2px 0;\">"
 								      + "<span style=\"display:inline-block;width:13px;height:13px;"
 								      +   "border-radius:3px;background:" + entry.color + ";flex-shrink:0;\"></span>"
-								      + "<span>" + entry.label + "</span>"
+								      + "<span>" + escHtml( entry.label ) + "</span>"
 								      + "</div>";
 							} );
 

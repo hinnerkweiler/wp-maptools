@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'HWMAPTOOL_URL', plugin_dir_url( __FILE__ ) );
+
 /**
  * Allow GeoJSON uploads.
  */

@@ -90,13 +90,15 @@ hwmaptool/
 
 ## Third-party libraries
 
-| Library | Version | License |
-|---|---|---|
-| [Leaflet](https://leafletjs.com/) | 1.9.4 | BSD-2-Clause |
-| [OpenStreetMap](https://www.openstreetmap.org/copyright) tiles | — | ODbL |
-| [OpenSeaMap](https://www.openseamap.org) tiles | — | CC-BY-SA |
+Leaflet is bundled locally inside the plugin — no CDN call is made at runtime.
 
-Leaflet is loaded from the [unpkg](https://unpkg.com) CDN at runtime; no local copy is bundled.
+| Library | Version | License | Location |
+|---|---|---|---|
+| [Leaflet](https://leafletjs.com/) | 1.9.4 | BSD-2-Clause | `assets/leaflet/` |
+| [OpenStreetMap](https://www.openstreetmap.org/copyright) tiles | — | ODbL | loaded at runtime from tile servers |
+| [OpenSeaMap](https://www.openseamap.org) tiles | — | CC-BY-SA | loaded at runtime from tile servers |
+
+Leaflet files in `assets/leaflet/` are **not** auto-updated. To upgrade, download the new release from [leafletjs.com](https://leafletjs.com/download.html) and replace the contents of that folder.
 
 ---
 
