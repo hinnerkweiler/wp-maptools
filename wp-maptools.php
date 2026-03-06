@@ -2,8 +2,12 @@
 /**
  * Plugin Name: Hinnerks Map Tool for Wordpress
  * Description: Adds a Gutenberg block for placing Maps based on an uploaded GeoJSON anywhere in posts and pages.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: Hinnerk Weiler
+ * Author URI: https://hinnerk-weiler.com
+ * Plugin URI: https://github.com/hinnerkweiler/wp-maptools
+ * Text Domain: wp-maptools
+ * Domain Path: /languages
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * License: MIT
@@ -14,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'HWMAPTOOL_URL', plugin_dir_url( __FILE__ ) );
+define( 'WP_MAPTOOLS_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Allow GeoJSON uploads.
@@ -46,7 +50,7 @@ add_action( 'init', function () {
 	$block_dir = __DIR__ . '/blocks/map-geojson';
 
 	wp_register_script(
-		'hw-map-geojson-editor',
+		'wp-maptools-editor',
 		plugins_url( 'blocks/map-geojson/index.js', __FILE__ ),
 		[
 			'wp-blocks',
@@ -61,7 +65,7 @@ add_action( 'init', function () {
 	register_block_type(
 		$block_dir,
 		[
-			'editor_script'   => 'hw-map-geojson-editor',
+			'editor_script'   => 'wp-maptools-editor',
 			'render_callback' => function ( $attributes, $content, $block ) use ( $block_dir ) {
 				ob_start();
 				$attributes = is_array( $attributes ) ? $attributes : [];

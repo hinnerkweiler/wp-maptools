@@ -33,7 +33,7 @@
 
             function onSelectMedia(media) {
                 if (!isValidGeoJsonFile(media)) {
-                    window.alert(__('Please select a .geojson or .json file.', 'hw-map-geojson'));
+                    window.alert(__('Please select a .geojson or .json file.', 'wp-maptools'));
                     return;
                 }
 
@@ -57,7 +57,7 @@
                 {},
                 el(
                     PanelBody,
-                    { title: __('GeoJSON Settings', 'hw-map-geojson'), initialOpen: true },
+                    { title: __('GeoJSON Settings', 'wp-maptools'), initialOpen: true },
 
                     el('div', { style: { marginTop: '8px' } },
                         el(MediaUploadCheck, {},
@@ -70,8 +70,8 @@
                                         variant: 'primary',
                                         onClick: obj.open
                                     }, attributes.attachmentId
-                                        ? __('Replace file', 'hw-map-geojson')
-                                        : __('Select GeoJSON file', 'hw-map-geojson')
+                                        ? __('Replace file', 'wp-maptools')
+                                        : __('Select GeoJSON file', 'wp-maptools')
                                     );
                                 }
                             })
@@ -84,7 +84,7 @@
                                 variant: 'secondary',
                                 isDestructive: true,
                                 onClick: removeFile
-                            }, __('Remove file', 'hw-map-geojson'))
+                            }, __('Remove file', 'wp-maptools'))
                         )
                         : null
                 )
@@ -95,17 +95,17 @@
             if (attributes.attachmentId && attributes.fileUrl) {
                 preview = el('div', {},
                     el('p', {},
-                        el('strong', {}, __('Selected file:', 'hw-map-geojson'))
+                        el('strong', {}, __('Selected file:', 'wp-maptools'))
                     ),
                     el('p', {}, attributes.fileName || attributes.fileUrl),
                     el('p', { style: { color: '#757575', fontSize: '0.85em' } },
-                        __('Map will render on the front end.', 'hw-map-geojson')
+                        __('Map will render on the front end.', 'wp-maptools')
                     )
                 );
             } else {
                 preview = el(Placeholder, {
-                    label: __('GeoJSON Map', 'hw-map-geojson'),
-                    instructions: __('Select or upload a GeoJSON file to display as an interactive map.', 'hw-map-geojson')
+                    label: __('GeoJSON Map', 'wp-maptools'),
+                    instructions: __('Select or upload a GeoJSON file to display as an interactive map.', 'wp-maptools')
                 },
                     el(MediaUploadCheck, {},
                         el(MediaUpload, {
@@ -116,12 +116,12 @@
                                 return el(Button, {
                                     variant: 'primary',
                                     onClick: obj.open
-                                }, __('Select GeoJSON file', 'hw-map-geojson'));
+                                }, __('Select GeoJSON file', 'wp-maptools'));
                             }
                         })
                     ),
                     el(Notice, { status: 'info', isDismissible: false },
-                        __('This block stores the selected file in the block itself, not as a per-post custom field.', 'hw-map-geojson')
+                        __('This block stores the selected file in the block itself, not as a per-post custom field.', 'wp-maptools')
                     )
                 );
             }

@@ -21,14 +21,14 @@ $map_caption  = trim( wp_get_attachment_caption( $attachment_id ) );
 
 wp_enqueue_style(
 	'leaflet',
-	HWMAPTOOL_URL . 'assets/leaflet/leaflet.css',
+	WP_MAPTOOLS_URL . 'assets/leaflet/leaflet.css',
 	[],
 	'1.9.4'
 );
 
 wp_enqueue_script(
 	'leaflet',
-	HWMAPTOOL_URL . 'assets/leaflet/leaflet.js',
+	WP_MAPTOOLS_URL . 'assets/leaflet/leaflet.js',
 	[],
 	'1.9.4',
 	true

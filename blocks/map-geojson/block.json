@@ -2,12 +2,12 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "hw/map-geojson",
-  "version": "1.0.0",
-  "title": "Map based on GeoJSON",
-  "category": "widgets",
-  "icon": "download",
-  "description": "Display a Map based on a GeoJSON anywhere in the content.",
-  "keywords": ["geojson", "map", "route"],
+  "version": "1.1.3",
+  "title": "Map GeoJSON",
+  "category": "embed",
+  "icon": "location-alt",
+  "description": "Renders an interactive Leaflet/OpenStreetMap map from an uploaded GeoJSON file.",
+  "keywords": ["geojson", "map", "route", "leaflet", "openstreetmap"],
   "supports": {
     "html": false
   },
@@ -23,16 +23,8 @@
     "fileName": {
       "type": "string",
       "default": ""
-    },
-    "buttonText": {
-      "type": "string",
-      "default": "GeoJSON Map"
-    },
-    "openInNewTab": {
-      "type": "boolean",
-      "default": false
     }
   },
-  "textdomain": "hw-map-geojson",
-  "editorScript": "hw-map-geojson-editor"
+  "textdomain": "wp-maptools",
+  "editorScript": "wp-maptools-editor"
 }
