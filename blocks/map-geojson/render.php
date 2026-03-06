@@ -15,6 +15,10 @@ if ( ! $file_url ) {
 	return;
 }
 
+$map_title    = trim( get_the_title( $attachment_id ) );
+$map_subtitle = trim( get_post_field( 'post_content', $attachment_id ) );
+$map_caption  = trim( wp_get_attachment_caption( $attachment_id ) );
+
 wp_enqueue_style(
 	'leaflet',
 	'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
@@ -171,6 +175,16 @@ wp_add_inline_script(
 	'after'
 );
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div style="font-family:Arial, Helvetica, sans-serif;" <?php echo get_block_wrapper_attributes(); ?>>
+	<?php if ( $map_title !== '' ) : ?>
+		<h6 style="margin:0 0 4px;"><?php echo esc_html( $map_title ); ?></h6>
+	<?php endif; ?>
+    <?php if ( $map_caption !== '' ) : ?>
+		<strong style="margin:6px 0 0;font-size:.875em;color:#666;"><?php echo wp_kses_post( $map_caption ); ?></strong>
+	<?php endif; ?>
 	<div id="<?php echo esc_attr( $map_id ); ?>" style="height: 450px; width: 100%;"></div>
+	<?php if ( $map_subtitle !== '' ) : ?>
+		<figcaption style="margin:0.5rem 0 8px;font-size:.8em;color:#555;"><?php echo wp_kses_post( $map_subtitle ); ?></figcaption>
+	<?php endif; ?>
+
 </div>
