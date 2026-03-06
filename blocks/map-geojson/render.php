@@ -43,16 +43,12 @@ wp_add_inline_script(
 		if ( ! el ) return;
 		var map = L.map( el );
 
-		L.tileLayer( "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-			attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
-			maxZoom: 19
-		} ).addTo( map );
+		L.tileLayer("http://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_grau/default/WEBMERCATOR/{z}/{y}/{x}.png", {
+	maxZoom: 20,
+	attribution: "Map data: &copy; <a href=\"http://www.govdata.de/dl-de/by-2-0\">dl-de/by-2-0</a>"
+}).addTo( map );
 
-		L.tileLayer( "https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", {
-			attribution: "&copy; <a href=\"https://www.openseamap.org\">OpenSeaMap</a> contributors",
-			maxZoom: 19
-		} ).addTo( map );
-
+		
 		var COLORS = [
 			"#e6194b","#3cb44b","#4363d8","#f58231","#911eb4",
 			"#42d4f4","#f032e6","#bfef45","#469990","#9a6324"

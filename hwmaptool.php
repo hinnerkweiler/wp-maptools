@@ -6,6 +6,8 @@
  * Author: Hinnerk Weiler
  * Requires at least: 6.5
  * Requires PHP: 7.4
+ * License: MIT
+ * License URI: https://opensource.org/licenses/MIT
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

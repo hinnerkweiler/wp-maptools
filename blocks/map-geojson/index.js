@@ -7,8 +7,6 @@
     const useBlockProps = blockEditor.useBlockProps;
     const PanelBody = components.PanelBody;
     const Button = components.Button;
-    const TextControl = components.TextControl;
-    const ToggleControl = components.ToggleControl;
     const Notice = components.Notice;
     const Placeholder = components.Placeholder;
 
@@ -61,27 +59,11 @@
                     PanelBody,
                     { title: __('GeoJSON Settings', 'hw-map-geojson'), initialOpen: true },
 
-                    el(TextControl, {
-                        label: __('Button text', 'hw-map-geojson'),
-                        value: attributes.buttonText || '',
-                        onChange: function (value) {
-                            setAttributes({ buttonText: value });
-                        }
-                    }),
-
-                    el(ToggleControl, {
-                        label: __('Open in new tab', 'hw-map-geojson'),
-                        checked: !!attributes.openInNewTab,
-                        onChange: function (value) {
-                            setAttributes({ openInNewTab: value });
-                        }
-                    }),
-
-                    el('div', { style: { marginTop: '16px' } },
+                    el('div', { style: { marginTop: '8px' } },
                         el(MediaUploadCheck, {},
                             el(MediaUpload, {
                                 onSelect: onSelectMedia,
-                                allowedTypes: ['application/json'],
+                                allowedTypes: ['application/json', 'application/geo+json'],
                                 value: attributes.attachmentId,
                                 render: function (obj) {
                                     return el(Button, {
@@ -116,23 +98,19 @@
                         el('strong', {}, __('Selected file:', 'hw-map-geojson'))
                     ),
                     el('p', {}, attributes.fileName || attributes.fileUrl),
-                    el('p', {},
-                        el('a', {
-                            href: attributes.fileUrl,
-                            target: '_blank',
-                            rel: 'noreferrer noopener'
-                        }, attributes.buttonText || __('Download GeoJSON', 'hw-map-geojson'))
+                    el('p', { style: { color: '#757575', fontSize: '0.85em' } },
+                        __('Map will render on the front end.', 'hw-map-geojson')
                     )
                 );
             } else {
                 preview = el(Placeholder, {
-                    label: __('Download GeoJSON', 'hw-map-geojson'),
-                    instructions: __('Choose a GeoJSON file for this block.', 'hw-map-geojson')
+                    label: __('GeoJSON Map', 'hw-map-geojson'),
+                    instructions: __('Select or upload a GeoJSON file to display as an interactive map.', 'hw-map-geojson')
                 },
                     el(MediaUploadCheck, {},
                         el(MediaUpload, {
                             onSelect: onSelectMedia,
-                            allowedTypes: ['application/json'],
+                            allowedTypes: ['application/json', 'application/geo+json'],
                             value: attributes.attachmentId,
                             render: function (obj) {
                                 return el(Button, {
