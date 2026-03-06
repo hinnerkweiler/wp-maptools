@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hinnerks Map Tool for Wordpress
  * Description: Adds a Gutenberg block for placing Maps based on an uploaded GeoJSON anywhere in posts and pages.
- * Version: 1.0.0
+ * Version: 1.1.3
  * Author: Hinnerk Weiler
  * Requires at least: 6.5
  * Requires PHP: 7.4
